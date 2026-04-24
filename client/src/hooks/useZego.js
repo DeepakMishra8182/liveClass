@@ -86,7 +86,7 @@ export const useZego = () => {
         isJoiningRef.current = false;
       }
     },
-    [user],
+    [user,isJoined],
   );
 
   const leaveZegoRoom = useCallback(async () => {

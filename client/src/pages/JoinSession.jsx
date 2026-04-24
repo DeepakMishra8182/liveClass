@@ -17,7 +17,7 @@ const JoinSession = () => {
   const zegoJoinedRef = useRef(false);
     const [searchParams] = useSearchParams();
 
-    const { joinSession, getSession, loading,error } = useSession();
+    const { joinSession, getSession,error } = useSession();
   const navigate = useNavigate();
 
     const {
@@ -103,7 +103,7 @@ const JoinSession = () => {
           zegoJoinedRef.current= false;
         }
       }
-    },[sessionJoined,roomId,joinZegoRoom,leaveZegoRoom])
+    },[sessionJoined,roomId,joinZegoRoom,leaveZegoRoom,containerRef])
 
 
     useEffect(() => {
@@ -132,14 +132,14 @@ const JoinSession = () => {
     }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50  via-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
       <SessionHeader
         title={APP_CONFIG.SESSION_CONTENT.HEADER.JOINING_TITLE}
         roomId={sessionJoined ? roomId : ''}
         onBack={ () => navigate(ROUTES.DASHBOARD)}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
           {!sessionJoined ? (
           <JoinForm
            roomId={roomId}
@@ -150,8 +150,8 @@ const JoinSession = () => {
           ):
           (
 
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2 space-y-6">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-2">
 
             <VideoContainer
               containerRef={containerRef}
