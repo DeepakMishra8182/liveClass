@@ -18,16 +18,16 @@ const VideoContainer = ({
   leaveButtonText,
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg border p-6 border-gray-100">
+    <div className="p-6 bg-white border border-gray-100 shadow-lg rounded-xl">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-gray-900 flex items-center">
+        <h2 className="flex items-center text-xl font-bold text-gray-900">
           <FaVideo className="w-5 h-5 mr-2 text-blue-600" />
           {APP_CONFIG.SESSION_CONTENT.VIDEO.TITLE}
         </h2>
         <div className="flex items-center space-x-3">
           {isJoined && (
-            <span className="flex items-center text-sm text-green-600 font-medium">
-              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+            <span className="flex items-center text-sm font-medium text-green-600">
+              <span className="w-2 h-2 mr-2 bg-green-500 rounded-full animate-pulse"></span>
               {APP_CONFIG.SESSION_CONTENT.VIDEO.CONNECTED}
             </span>
           )}
@@ -43,7 +43,7 @@ const VideoContainer = ({
       </div>
 
       {zegoError && (
-        <div className="mb-4 bg-red-50 border-1-4 border-red-500 text-red-700 p-4 rounded-lg">
+        <div className="p-4 mb-4 text-red-700 border-red-500 rounded-lg bg-red-50 border-1-4">
           <div className="flex items-center">
             <FaExclamationCircle className="w-5 h-5 mr-2" />
             <span className="text-sm">{zegoError}</span>
@@ -55,26 +55,25 @@ const VideoContainer = ({
         ref={containerRef}
         className="w-full h-[calc(100vh-180px)] rounded-xl overflow-hidden bg-gray-900 border-2 border-gray-200 shadow-inner"
       />
-        {zegoLoading && (
-          <div className="mt-4 text-center">
-            <div className="inline-flex items-center text-gray-600">
-              <FaSpinner className="animate-spin h-5 w-5 mr-2" />
-              {APP_CONFIG.SESSION_CONTENT.VIDEO.CONNECTING}
-            </div>
+      {zegoLoading && (
+        <div className="mt-4 text-center">
+          <div className="inline-flex items-center text-gray-600">
+            <FaSpinner className="w-5 h-5 mr-2 animate-spin" />
+            {APP_CONFIG.SESSION_CONTENT.VIDEO.CONNECTING}
           </div>
-        )}
+        </div>
+      )}
 
-        {onLeave && !userHasJoined && (
-          <div className="mt-6 flex justify-center">
-            <button
-              onClick={onLeave}
-              className="px-8 py-3  font-medium text-white bg-gradient-to-r from-red-500 to-red-600  rounded-lg hover:from-red-600 hover:to-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500  shadow-md transition-all transform hover:scale-105"
-            >
-
-                {leaveButtonText || APP_CONFIG.SESSION_CONTENT.VIDEO.LEAVE_BUTTON}
-            </button>
-          </div>
-        )}
+      {onLeave && !userHasJoined && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={onLeave}
+            className="px-8 py-3 font-medium text-white transition-all transform rounded-lg shadow-md bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 hover:scale-105"
+          >
+            {leaveButtonText || APP_CONFIG.SESSION_CONTENT.VIDEO.LEAVE_BUTTON}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

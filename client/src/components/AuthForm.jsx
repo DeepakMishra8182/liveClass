@@ -26,8 +26,8 @@ const AuthForm = ({
     <div
       className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${isLogin ? "bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" : "bg-gradient-to-br from-purple-50 via-pink-50 to-red-50"}`}
     >
-      <div className="max-w-md w-full">
-        <div className="text-center mb-8">
+      <div className="w-full max-w-md">
+        <div className="mb-8 text-center">
           <div
             className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl shadow-lg mb-4 ${isLogin ? "bg-gradient-to-br from-blue-600 to-indigo-600" : "bg-gradient-to-br from-purple-600 to-pink-600"}`}
           >
@@ -38,7 +38,7 @@ const AuthForm = ({
             )}
           </div>
 
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="mb-2 text-4xl font-bold text-gray-900">
             {isLogin ? APP_CONFIG.APP_NAME : `Join ${APP_CONFIG.APP_NAME}`}
           </h1>
           <p className="text-gray-600">
@@ -48,15 +48,15 @@ const AuthForm = ({
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <div className="p-8 bg-white border border-gray-100 shadow-xl rounded-2xl">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 text-center">
+            <h2 className="text-2xl font-bold text-center text-gray-900">
               {isLogin
                 ? APP_CONFIG.AUTH_CONTENT.LOGIN.HEADING
                 : APP_CONFIG.AUTH_CONTENT.REGISTER.HEADING}
             </h2>
 
-            <p className="mt-2 text-center text-sm text-gray-600">
+            <p className="mt-2 text-sm text-center text-gray-600">
               {isLogin
                 ? APP_CONFIG.AUTH_CONTENT.LOGIN.DESCRIPTION
                 : APP_CONFIG.AUTH_CONTENT.REGISTER.DESCRIPTION}
@@ -68,7 +68,7 @@ const AuthForm = ({
             onSubmit={onSubmit}
           >
             {(error || localError) && (
-              <div className="bg-red-50 border-1-4 border-red-500 text-red-700 p-4 rounded-lg flex items-start">
+              <div className="flex items-start p-4 text-red-700 border-red-500 rounded-lg bg-red-50 border-1-4">
                 <FaExclamationCircle className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" />
                 <span className="text-sm">{error || localError}</span>
               </div>
@@ -78,13 +78,13 @@ const AuthForm = ({
               <div>
                 <label
                   htmlFor="name"
-                  className="block tetx-sm font-medium text-gray-700 mb-2"
+                  className="block mb-2 font-medium text-gray-700 tetx-sm"
                 >
                   Full Name
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FaUser className="h-5 w-5 text-gray-400" />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaUser className="w-5 h-5 text-gray-400" />
                   </div>
                   <input
                     id="name"
@@ -94,7 +94,7 @@ const AuthForm = ({
                     required
                     value={formData.name || ""}
                     onChange={onChange}
-                    className="block w-full pl-10 pr-3  py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+                    className="block w-full py-3 pl-10 pr-3 transition-colors border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                     placeholder="John Doe"
                   />
                 </div>
@@ -104,13 +104,13 @@ const AuthForm = ({
             <div>
               <label
                 htmlFor="name"
-                className="block tetx-sm font-medium text-gray-700 mb-2"
+                className="block mb-2 font-medium text-gray-700 tetx-sm"
               >
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaEnvelope className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <FaEnvelope className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
                   id="email"
@@ -126,98 +126,102 @@ const AuthForm = ({
               </div>
             </div>
 
-
-                  <div>
+            <div>
               <label
                 htmlFor="name"
-                className="block tetx-sm font-medium text-gray-700 mb-2"
+                className="block mb-2 font-medium text-gray-700 tetx-sm"
               >
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="h-5 w-5 text-gray-400" />
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <FaLock className="w-5 h-5 text-gray-400" />
                 </div>
                 <input
                   id="password"
                   name="password"
                   type="password"
-                  autoComplete={isLogin ? 'current-password' : 'new-password'}
+                  autoComplete={isLogin ? "current-password" : "new-password"}
                   required
                   value={formData.password || ""}
                   onChange={onChange}
                   className={`block w-full pl-10 pr-3  py-3 border border-gray-300 rounded-lg focus:ring-2  transition-colors ${isLogin ? "focus:ring-blue-500 focus:border-blue-500" : "focus:ring-purple-500 focus:border-purple-500"}`}
-                  placeholder={isLogin ?'Enter your password' : 'Minimum 6 characters'}
+                  placeholder={
+                    isLogin ? "Enter your password" : "Minimum 6 characters"
+                  }
                 />
               </div>
             </div>
 
-
-             {!isLogin && (
-                       <div>
-              <label
-                htmlFor="name"
-                className="block tetx-sm font-medium text-gray-700 mb-2"
-              >
-                Confirm Password
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaShieldAlt className="h-5 w-5 text-gray-400" />
+            {!isLogin && (
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block mb-2 font-medium text-gray-700 tetx-sm"
+                >
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <FaShieldAlt className="w-5 h-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="confirmPassword"
+                    autoComplete="new-password"
+                    required
+                    value={formData.confirmPassword || ""}
+                    onChange={onChange}
+                    className={`block w-full pl-10 pr-3  py-3 border border-gray-300 rounded-lg focus:ring-2  transition-colors ${isLogin ? "focus:ring-blue-500 focus:border-blue-500" : "focus:ring-purple-500 focus:border-purple-500"}`}
+                    placeholder="Re-enter your password"
+                  />
                 </div>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="confirmPassword"
-                  autoComplete='new-password'
-                  required
-                  value={formData.confirmPassword || ""}
-                  onChange={onChange}
-                  className={`block w-full pl-10 pr-3  py-3 border border-gray-300 rounded-lg focus:ring-2  transition-colors ${isLogin ? "focus:ring-blue-500 focus:border-blue-500" : "focus:ring-purple-500 focus:border-purple-500"}`}
-                  placeholder='Re-enter your password'
-                />
               </div>
-            </div>
-             )}
+            )}
 
-
-             <button
+            <button
               type="submit"
               disabled={loading}
-              className=
-              {`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02]  ${isLogin ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-blue-500' : 'bg-gradient-to-r from-purple-600 to-pink-600  hover:from-purple-700 hover:to-pink-700 focus:ring-purple-500 mt-6'}`}
-             >
-            {loading ? (
+              className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02]  ${isLogin ? "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-blue-500" : "bg-gradient-to-r from-purple-600 to-pink-600  hover:from-purple-700 hover:to-pink-700 focus:ring-purple-500 mt-6"}`}
+            >
+              {loading ? (
                 <>
-                  <FaSpinner className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"/>
-                  {isLogin ? 'Signing...': 'Creating account...'}
+                  <FaSpinner className="w-5 h-5 mr-3 -ml-1 text-white animate-spin" />
+                  {isLogin ? "Signing..." : "Creating account..."}
                 </>
-            ): (
-                isLogin ? 'Sign In' : 'Create Account'
-            )}
-             </button>
+              ) : isLogin ? (
+                "Sign In"
+              ) : (
+                "Create Account"
+              )}
+            </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-                {isLogin ? (
-                    <>
-                     Don't have an account{' '}
-                     <Link to={ROUTES.REGISTER} className="font-medium text-blue-600 hover:text-blue-500 transition-colors">
-                      Create one now
-                     </Link>
-                    </>
-                ): (
-                    <>
-                       Already have an account{' '}
-                     <Link to={ROUTES.LOGIN} className="font-medium text-purple-600 hover:text-purple-500 transition-colors">
-                      Sign in here
-                     </Link>
-                    </>
-                )}
-
+              {isLogin ? (
+                <>
+                  Don't have an account{" "}
+                  <Link
+                    to={ROUTES.REGISTER}
+                    className="font-medium text-blue-600 transition-colors hover:text-blue-500"
+                  >
+                    Create one now
+                  </Link>
+                </>
+              ) : (
+                <>
+                  Already have an account{" "}
+                  <Link
+                    to={ROUTES.LOGIN}
+                    className="font-medium text-purple-600 transition-colors hover:text-purple-500"
+                  >
+                    Sign in here
+                  </Link>
+                </>
+              )}
             </p>
-
           </div>
         </div>
       </div>
