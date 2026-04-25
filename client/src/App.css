@@ -1,0 +1,26 @@
+/* App.css */
+body {
+  background-color: #020617 !important; /* Forces global dark background */
+  color: #f8fafc;
+}
+
+/* Fix for icons not showing in cards */
+.icon-container svg {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Custom Scrollbar for Elite look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

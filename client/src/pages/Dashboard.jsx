@@ -49,37 +49,63 @@ const Dashboard = () => {
   const handleJoinSession = () => {
     navigate(ROUTES.JOIN);
   };
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <WelcomeSection userName={user?.name} />
 
+  return (
+    /* Background changed to deep slate/black */
+    <div className="min-h-screen bg-[#020617] relative overflow-hidden transition-colors duration-500">
+      
+      {/* Background Decorative Orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <main className="relative z-10 px-6 py-24 mx-auto max-w-7xl sm:px-8 lg:px-10">
+        
+        {/* Welcome Section wrapped in a container to handle text colors if needed */}
+        <div className="mb-12">
+          <WelcomeSection userName={user?.name} />
+        </div>
+
+        {/* Improved Error Toast */}
         {error && (
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="bg-red-50 border-1-4 border-red-500 text-red-700 p-4 rounded-lg shadow-sm ">
+          <div className="max-w-2xl mx-auto mb-10">
+            <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-2xl shadow-[0_0_20px_rgba(239,68,68,0.1)] backdrop-blur-md">
               <div className="flex items-center">
-                <FaExclamationCircle className="w-5 h-5 mr-2" />
-                <span>{error}</span>
+                <FaExclamationCircle className="w-5 h-5 mr-3" />
+                <span className="text-sm font-bold tracking-wider uppercase">{error}</span>
               </div>
             </div>
           </div>
         )}
 
-        <ActionCard
-          onCreateSession={handleCreateSession}
-          onJoinSession={handleJoinSession}
-          creating={creating}
-        />
+        {/* Action Cards (Host/Join) */}
+        <div className="mb-16">
+          <ActionCard
+            onCreateSession={handleCreateSession}
+            onJoinSession={handleJoinSession}
+            creating={creating}
+          />
+        </div>
 
-        <FeaturesGrid />
+        {/* Features Section */}
+        <div className="mb-20">
+          <FeaturesGrid />
+        </div>
 
-        <SessionList
-          sessions={sessions}
-          loading={loading}
-          statusFilter={statusFilter}
-          onFilterChange={setStatusFilter}
-          onRejoinSession={handleRejoinSession}
-        />
+        {/* Sessions List Section */}
+        <div className="relative">
+          {/* Glassy Background for the list area */}
+          <div className="absolute inset-0 bg-slate-900/30 backdrop-blur-3xl rounded-[3rem] -m-4 lg:-m-8 border border-white/5 pointer-events-none"></div>
+          
+          <div className="relative z-10">
+            <SessionList
+              sessions={sessions}
+              loading={loading}
+              statusFilter={statusFilter}
+              onFilterChange={setStatusFilter}
+              onRejoinSession={handleRejoinSession}
+            />
+          </div>
+        </div>
       </main>
     </div>
   );

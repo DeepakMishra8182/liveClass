@@ -17,7 +17,10 @@ function Layout({ children, showHeader = true, showFooter = true }) {
   return (
     <>
       {showHeader && <Header />}
-      <main className={showHeader ? "pt-16" : ""}>{children}</main>
+      {/* Dynamic padding and dark background for all pages */}
+      <main className={`${showHeader ? "pt-16" : ""} min-h-screen bg-[#020617]`}>
+        {children}
+      </main>
       {showFooter && <Footer />}
     </>
   );
@@ -31,28 +34,36 @@ function App() {
           <Toaster
             position="top-right"
             toastOptions={{
-              duration: 3000,
+              duration: 4000,
               style: {
-                background: "#363636",
-                color: "#fff",
+                background: "#0f172a", // Slate-900 for dark mode toast
+                color: "#f8fafc",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "16px",
+                padding: "12px 24px",
+                fontSize: "14px",
+                fontWeight: "700",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                backdropFilter: "blur(10px)",
               },
               success: {
-                duration: 3000,
                 iconTheme: {
-                  primary: "#10b981",
-                  secondary: "#fff",
+                  primary: "#10b981", // Emerald-500
+                  secondary: "#0f172a",
                 },
               },
               error: {
-                duration: 4000,
                 iconTheme: {
-                  primary: "#ef4444",
-                  secondary: "#fff",
+                  primary: "#ef4444", // Red-500
+                  secondary: "#0f172a",
                 },
               },
             }}
           />
-          <div className="flex flex-col min-h-screen bg-gray-50">
+          
+          {/* Main Container with the global dark background */}
+          <div className="flex flex-col min-h-screen bg-[#020617] selection:bg-blue-500/30 selection:text-blue-200">
             <Routes>
               <Route
                 path="/"
@@ -114,23 +125,31 @@ function App() {
                 }
               />
 
+              {/* 404 Page in Dark Theme */}
               <Route
                 path="*"
                 element={
                   <Layout showHeader={false} showFooter={false}>
-                    <div className="flex items-center justify-center min-h-screen">
-                      <div className="text-center">
-                        <h1 className="mb-4 text-4xl font-bold text-gray-800">
+                    <div className="flex flex-col items-center justify-center min-h-screen bg-[#020617]">
+                      <div className="relative mb-8">
+                        <h1 className="text-[12rem] font-black text-white/5 leading-none select-none">
                           404
                         </h1>
-                        <p className="mb-4 text-gray-600">Page not found</p>
-                        <a
-                          href="/"
-                          className="text-blue-600 hover:text-blue-500"
-                        >
-                          Go to home
-                        </a>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <p className="text-xl font-black uppercase tracking-[0.5em] text-blue-500 italic drop-shadow-2xl">
+                            Grid Lost
+                          </p>
+                        </div>
                       </div>
+                      <p className="mb-8 text-xs font-bold tracking-widest uppercase text-slate-500">
+                        The requested terminal is not responding
+                      </p>
+                      <a
+                        href="/"
+                        className="px-8 py-3 text-xs font-black tracking-widest text-white uppercase transition-all bg-blue-600 shadow-lg hover:bg-blue-500 rounded-xl shadow-blue-600/20 active:scale-95"
+                      >
+                        Re-establish Link
+                      </a>
                     </div>
                   </Layout>
                 }

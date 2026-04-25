@@ -12,102 +12,107 @@ const SessionList = ({
 }) => {
   const statusBadge = (status) => {
     const map = {
-      active: "bg-green-100 text-green-700",
-      ended: "bg-gray-100 text-gray-700",
+      active: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]",
+      ended: "bg-slate-800 text-slate-400 border-slate-700",
     };
-    return map[status] || "bg-gray-100 text-gray-700";
+    return map[status] || "bg-slate-800 text-slate-400 border-slate-700";
   };
 
-
   return (
-    <div className="mt-16 max-w-5xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-3">
+    <div className="mt-16 max-w-5xl mx-auto bg-slate-900/40 backdrop-blur-xl rounded-[2rem] shadow-2xl border border-white/5 p-8 selection:bg-indigo-500/30">
+      {/* Header Section */}
+      <div className="flex flex-col gap-6 pb-8 mb-10 border-b sm:flex-row sm:items-end sm:justify-between border-white/5">
         <div>
-          <h3 className="text-2xl yexy-gray-900 font-bold">
+          <h3 className="mb-2 text-3xl font-black tracking-tight text-white">
             {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.HEADING}
           </h3>
-          <p className="text-gray-600">
+          <p className="italic font-medium text-slate-400 opacity-80">
             {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.DESCRIPTION}
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
-          <label className="text-sm text-gray-600">Filter:</label>
+        <div className="flex items-center p-2 space-x-4 border bg-slate-800/50 rounded-2xl border-white/5">
+          <label className="ml-2 text-xs font-bold tracking-widest uppercase text-slate-500">Filter</label>
           <select
             value={statusFilter}
             onChange={(e) => onFilterChange(e.target.value)}
-            className="py-2 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 text-sm font-semibold transition-all border-none cursor-pointer bg-slate-900 text-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
           >
-            <option value="all">
-              {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ALL}
-            </option>
-            <option value="active">
-              {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ACTIVE}
-            </option>
-            <option value="ended">
-              {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ENDED}
-            </option>
+            <option value="all">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ALL}</option>
+            <option value="active">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ACTIVE}</option>
+            <option value="ended">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.FILTER_ENDED}</option>
           </select>
         </div>
       </div>
 
+      {/* Content Area */}
       {loading && sessions.length === 0 ? (
-        <div className="flex items-center text-gray-600">
-          <FaSpinner className="animate-spin h-5 w-5 mr-2" />
-          {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.LOADING}
+        <div className="flex flex-col items-center justify-center py-20 text-indigo-400">
+          <FaSpinner className="w-10 h-10 mb-4 animate-spin" />
+          <span className="text-xs font-bold tracking-widest uppercase">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.LOADING}</span>
         </div>
       ) : sessions.length === 0 ? (
-        <div className="text-gray-600">
-          {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.EMPTY}
+        <div className="py-20 text-center border-2 border-dashed border-white/5 rounded-3xl">
+          <p className="font-medium text-slate-500">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.EMPTY}</p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {sessions.map((s) => (
             <div
               key={s.id}
-              className="border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:shadow-md transition-shadow"
+              className="group relative overflow-hidden bg-slate-800/30 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border border-white/5 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
             >
-              <div>
-                <div className="flex items-center space-x-3">
-                  <span
-                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${statusBadge(s.status)} `}
-                  >
-                    <FaCircle className="w-2 h-2 mr-2" />
+              {/* Hover highlight effect */}
+              <div className="absolute inset-y-0 left-0 w-1 transition-opacity bg-indigo-500 opacity-0 group-hover:opacity-100" />
+
+              <div className="relative z-10">
+                <div className="flex items-center mb-4 space-x-3">
+                  <span className={`inline-flex items-center px-3 py-1 rounded-lg text-[10px] uppercase tracking-tighter font-black border ${statusBadge(s.status)}`}>
+                    <FaCircle className={`w-1.5 h-1.5 mr-2 ${s.status === 'active' ? 'animate-pulse' : ''}`} />
                     {s.status}
                   </span>
                   {s.isHost && (
-                    <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                    <span className="text-[10px] uppercase font-black tracking-tighter text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-lg">
                       Host
                     </span>
                   )}
                 </div>
-                <div className="mt-2 text-lg font-semibold text-gray-900">
-                  Room : {s.roomId}
+                
+                <div className="text-xl font-bold text-white transition-colors group-hover:text-indigo-300">
+                  Room <span className="text-indigo-500">#</span>{s.roomId}
                 </div>
-                <div className="text-sm text-gray-500 mt-1">
-                  Host: {s.hostName}
+                
+                <div className="grid grid-cols-2 mt-4 gap-x-8">
+                  <div>
+                    <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Lead Host</p>
+                    <p className="text-sm font-semibold text-slate-300">{s.hostName}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Participants</p>
+                    <p className="text-sm font-semibold text-slate-300">{s.participantCount} Users</p>
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600 ">
-                  Participants: {s.participantCount}
-                </div>
-                <div className="text-sm text-gray-500 mt-1">
+
+                <div className="text-[11px] text-slate-500 mt-4 flex items-center font-medium">
+                  <span className="w-2 h-2 mr-2 rounded-full bg-slate-700" />
                   Started: {s.startedAt ? formatDate(s.startedAt) : "N/A"}
-                  {s.endedAt && <>. Ended: {formatDate(s.endedAt)}</>}
+                  {s.endedAt && <><span className="mx-2">|</span> Ended: {formatDate(s.endedAt)}</>}
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+
+              <div className="relative z-10">
                 <button
                   onClick={() => onRejoinSession(s)}
                   disabled={s.status !== "active"}
-                  className="inline-flex items-center px-4  py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg  hover:from-blue-700 hover:to-indigo-700  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center justify-center w-full px-8 py-3 font-black transition-all duration-300 bg-white shadow-xl sm:w-auto text-slate-900 rounded-xl hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-20 disabled:grayscale active:scale-95"
                 >
                   {s.status === "active" ? (
                     <>
-                      {APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.REJOIN_BUTTON}
-                      <FaExternalLinkAlt className="w-4 h-4 ml-2" />
+                      <span className="mr-2 tracking-tight uppercase">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.REJOIN_BUTTON}</span>
+                      <FaExternalLinkAlt className="w-3 h-3" />
                     </>
                   ) : (
-                    APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.ENDED_BUTTON
+                    <span className="tracking-tight uppercase">{APP_CONFIG.DASHBOARD_CONTENT.SESSIONS_LIST.ENDED_BUTTON}</span>
                   )}
                 </button>
               </div>
