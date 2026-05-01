@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import api from "../service/api";
 import { API_ENDPOINTS } from "../utils/constants";
-// import { unstable_setDevServerHooks } from "react-router-dom";
+
 
 
 const AuthContext = createContext();
@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //check if user is authenticated on mount
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -44,10 +43,7 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       const { user, token } = response.data.data;
-      //set token to localstorage
       localStorage.setItem("token", token);
-
-      //update user state
       setUser(user);
 
       return { success: true, user };
@@ -69,10 +65,10 @@ export const AuthProvider = ({ children }) => {
         password,
       });
       const { user, token } = response.data.data;
-      //set token to localstorage
+      
       localStorage.setItem("token", token);
 
-      //update user state
+     
       setUser(user);
 
       return { success: true, user };
@@ -110,11 +106,6 @@ export const AuthProvider = ({ children }) => {
 };
 
 
-
-
-// useAuth hook
-
-// custom hook to access auth context
 
 
 export const useAuth = () => {

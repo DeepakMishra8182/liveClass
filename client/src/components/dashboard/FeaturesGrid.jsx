@@ -9,7 +9,6 @@ const iconMap = {
   FaUsers: FaUsers,
 };
 
-// Modern Glowing Color Map
 const colorMap = {
   blue: "from-blue-500/20 to-indigo-500/20 text-blue-400 border-blue-500/30",
   green: "from-emerald-500/20 to-teal-500/20 text-emerald-400 border-emerald-500/30",

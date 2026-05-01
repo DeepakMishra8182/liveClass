@@ -38,9 +38,6 @@ export const generateKitToken = (roomId,userId,userName) => {
     }
 }
 
-
-//Request  brower permission for camera and mixrophone
-
 const requestMediaPermission = async () => {
     try {
          const stream = await navigator.mediaDevices.getUserMedia({
@@ -64,8 +61,6 @@ export const joinRoom = async(roomId,userId,userName,container,onJoinCallback,on
     if(!ZEGO_CONFIG.APP_ID){
         throw new Error('Zegocloud App Id is not configured')
     }
-
-    //clean up exiting instance if any 
     if(zegoInstance && !isDestroying){
         try {
              isDestroying= true;
@@ -107,8 +102,6 @@ export const joinRoom = async(roomId,userId,userName,container,onJoinCallback,on
         console.error('token generation error',error);
         throw new Error(`faild to generate zego token: ${error.message}`)
     }
-
-    //Create a ZEGO UIkIT instance
     let zp;
     try {
          zp = ZegoUIKitPrebuilt.create(kitToken);
@@ -119,11 +112,7 @@ export const joinRoom = async(roomId,userId,userName,container,onJoinCallback,on
            console.error('ZEGO instance creation error',error);
         throw new Error(`faild to create Zego instace: ${error.message}`)
     }
-
-    //small delay
     await new Promise(resolve => setTimeout(resolve,100))
-
-    //join room with prebuild ui 
     try {
         zp.joinRoom({
             container:container,

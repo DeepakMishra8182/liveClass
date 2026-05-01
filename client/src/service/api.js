@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-//create a axios instance with base configuration 
 const api = axios.create(
     {
         baseURL: process.env.REACT_APP_API_URL,
@@ -22,9 +20,6 @@ api.interceptors.request.use(
         return Promise.reject(error);
     }
 )
-
-
-//Response interceptor - hanlde error globally
 
 api.interceptors.response.use(
     (response) =>  response,

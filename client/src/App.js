@@ -17,7 +17,6 @@ function Layout({ children, showHeader = true, showFooter = true }) {
   return (
     <>
       {showHeader && <Header />}
-      {/* Dynamic padding and dark background for all pages */}
       <main className={`${showHeader ? "pt-16" : ""} min-h-screen bg-[#020617]`}>
         {children}
       </main>
@@ -36,7 +35,7 @@ function App() {
             toastOptions={{
               duration: 4000,
               style: {
-                background: "#0f172a", // Slate-900 for dark mode toast
+                background: "#0f172a", 
                 color: "#f8fafc",
                 border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: "16px",
@@ -49,20 +48,19 @@ function App() {
               },
               success: {
                 iconTheme: {
-                  primary: "#10b981", // Emerald-500
+                  primary: "#10b981", 
                   secondary: "#0f172a",
                 },
               },
               error: {
                 iconTheme: {
-                  primary: "#ef4444", // Red-500
+                  primary: "#ef4444",
                   secondary: "#0f172a",
                 },
               },
             }}
           />
           
-          {/* Main Container with the global dark background */}
           <div className="flex flex-col min-h-screen bg-[#020617] selection:bg-blue-500/30 selection:text-blue-200">
             <Routes>
               <Route
@@ -91,7 +89,6 @@ function App() {
                 }
               />
 
-              {/* Protected routes */}
               <Route
                 path={ROUTES.DASHBOARD}
                 element={
@@ -125,7 +122,7 @@ function App() {
                 }
               />
 
-              {/* 404 Page in Dark Theme */}
+    
               <Route
                 path="*"
                 element={

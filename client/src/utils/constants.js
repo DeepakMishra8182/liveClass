@@ -1,8 +1,4 @@
-/**
- * Application Constants
- * 
- * Centralized constants used throughout the app
- */
+
 
 export const API_ENDPOINTS = {
   AUTH: {
@@ -15,10 +11,9 @@ export const API_ENDPOINTS = {
     JOIN: '/session/join',
     END: '/session/end',
     LEAVE: '/session/leave',
-    GET: '/session', // Base path, append roomId
+    GET: '/session', 
     LIST: '/session/list',
   },
-  // ZEGO token generation moved to frontend - no backend endpoint needed
 };
 
 export const ROUTES = {
@@ -32,20 +27,13 @@ export const ROUTES = {
 
 export const ZEGO_CONFIG = {
   APP_ID: process.env.REACT_APP_ZEGO_APP_ID,
-  SERVER_SECRET: process.env.REACT_APP_ZEGO_SERVER_SECRET || '', // Optional for test tokens
+  SERVER_SECRET: process.env.REACT_APP_ZEGO_SERVER_SECRET || '', 
 };
-
-/**
- * App Configuration
- * Brand information and app-wide settings
- */
 export const APP_CONFIG = {
-  // Brand Information
   APP_NAME: 'Live Classes',
   APP_DESCRIPTION: 'Connect, learn, and grow together with our live class platform. Host or join interactive sessions with HD video, real-time chat, and seamless collaboration.',
   APP_TAGLINE: 'Connect, Learn, Grow Together',
   
-  // Social Media Links
   SOCIAL_LINKS: {
     GITHUB: 'https://github.com',
     TWITTER: 'https://twitter.com',
@@ -53,7 +41,6 @@ export const APP_CONFIG = {
     EMAIL: 'mailto:support@liveclasses.com',
   },
   
-  // Footer Links
   FOOTER_LINKS: {
     QUICK_LINKS: [
       { label: 'Home', route: '/', isExternal: false },
@@ -68,11 +55,9 @@ export const APP_CONFIG = {
       { label: 'Terms of Service', url: '#', isExternal: true },
     ],
   },
-  
-  // Copyright
+
   COPYRIGHT_TEXT: 'All rights reserved.',
-  
-  // Features Data (for Home and Dashboard)
+
   FEATURES: [
     {
       icon: 'FaVideo',
@@ -103,8 +88,6 @@ export const APP_CONFIG = {
       color: 'indigo'
     }
   ],
-  
-  // Benefits Data (for Home page)
   BENEFITS: [
     'Unlimited session duration',
     'Screen sharing capabilities',
@@ -113,15 +96,12 @@ export const APP_CONFIG = {
     'No downloads required',
     '24/7 customer support'
   ],
-  
-  // Trust Indicators (for Hero section)
+
   TRUST_INDICATORS: [
     'No credit card required',
     'Free forever',
     'Setup in minutes'
   ],
-  
-  // Home Page Content
   HOME_CONTENT: {
     HERO: {
       BADGE_TEXT: 'Start Your First Live Session Today',
@@ -148,7 +128,6 @@ export const APP_CONFIG = {
     },
   },
   
-  // Dashboard Content
   DASHBOARD_CONTENT: {
     WELCOME: {
       GREETING: 'Welcome back, {userName}! 👋',
@@ -179,8 +158,7 @@ export const APP_CONFIG = {
       ENDED_BUTTON: 'Ended',
     },
   },
-  
-  // Session Content
+
   SESSION_CONTENT: {
     JOIN_FORM: {
       HEADING: 'Join a Session',
@@ -222,7 +200,6 @@ export const APP_CONFIG = {
     },
   },
   
-  // Auth Content
   AUTH_CONTENT: {
     LOGIN: {
       HEADING: 'Welcome Back',
@@ -234,7 +211,6 @@ export const APP_CONFIG = {
     },
   },
   
-  // Loading Messages
   LOADING_MESSAGES: {
     SESSION: 'Loading session...',
     SESSIONS: 'Loading sessions...',

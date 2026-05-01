@@ -14,8 +14,6 @@ export const SessionProvider = ({children}) => {
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
 
-
-    //Create a new session 
     const createSession = useCallback(async() => {
         try {
              setError(null);
@@ -33,8 +31,6 @@ export const SessionProvider = ({children}) => {
             setLoading(false)
         }
     },[]);
-
-//join session
         const joinSession = useCallback(async(roomId) => {
         try {
              setError(null);
@@ -53,8 +49,6 @@ export const SessionProvider = ({children}) => {
         }
     },[])
 
-
-    //get session
 
         const getSession = useCallback(async(roomId) => {
         try {
@@ -75,8 +69,6 @@ export const SessionProvider = ({children}) => {
     },[])
 
 
-    //leave session
-
             const leaveSession = useCallback(async(roomId) => {
         try {
              setError(null);
@@ -95,7 +87,7 @@ export const SessionProvider = ({children}) => {
     },[])
 
 
-        //list sessions
+
 
             const listSessions = useCallback(async(status = 'all') => {
         try {

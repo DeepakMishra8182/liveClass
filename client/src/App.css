@@ -1,16 +1,14 @@
-/* App.css */
+
+App.css
 body {
-  background-color: #020617 !important; /* Forces global dark background */
+  background-color: #020617 !important; 
   color: #f8fafc;
 }
-
-/* Fix for icons not showing in cards */
 .icon-container svg {
   display: block !important;
   visibility: visible !important;
 }
 
-/* Custom Scrollbar for Elite look */
 ::-webkit-scrollbar {
   width: 8px;
 }

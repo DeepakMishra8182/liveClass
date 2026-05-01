@@ -35,7 +35,7 @@ export const useZego = () => {
       setError(null);
 
       try {
-        //wait for container to be avaible with retry mechanism
+        
         let retries = 0;
         const maxRetries = 30;
         while (!containerRef.current && retries < maxRetries) {
@@ -60,11 +60,10 @@ export const useZego = () => {
           user.name,
           container,
           () => {
-            //onJoinCall
+          
             setUserHasJoined(true);
           },
           () => {
-            //onLeaveCall
             setUserHasJoined(false);
           },
         );
@@ -128,14 +127,12 @@ export const useZego = () => {
   }, []);
 
   return {
-    //state
     isJoined,
     userHasJoined,
     error,
     loading,
     containerRef,
 
-    //Methods
     joinZegoRoom,
     leaveZegoRoom,
   };
