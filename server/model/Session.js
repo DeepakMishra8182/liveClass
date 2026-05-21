@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 
 const sessionSchema = new mongoose.Schema({
-    roomId:{ type: String, required: true, unquie:true,trim:true,index:true },
+    roomId:{ type: String, required: true, uniqe:true,trim:true,index:true },
     host: {
         type:mongoose.Schema.Types.ObjectId,
         ref:'User',
